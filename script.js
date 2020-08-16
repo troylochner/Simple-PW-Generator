@@ -27,21 +27,31 @@ var numberBucket = "0123456789";
 var specialBucket =  "!#$%&*-:;<=>?@[^_`{|}~";
 
 
+
 /*---------------------------------------------------------------/*/
 //USER PROMPTS FOR THE PASSWORD PROCEES
 function generatePassword() {
   //alert("The button click works");
   //INITIAL USER PROMPTS - REFINE LATER. 
-  var myLength = prompt("Please enter a password length \n Note : Length must be between 8-128");
-  var numUpper = prompt("How many uppercase characters are required? ( min: 1 )") ;
-  var numNumber = prompt("How many numeric characters are required? ( min: 1 )") ;
-  var numSpecial = prompt("How many special characters are required? ( min: 1 )") ;
-  pwGen(myLength,numUpper,numNumber,numSpecial);
+  var myLength = parseInt(prompt("Please enter a password length \n Note : Length must be between 8-128"));
+  var numUpper = parseInt(prompt("How many uppercase characters are required? ( min: 1 )")) ;
+  var numNumber = parseInt(prompt("How many numeric characters are required? ( min: 1 )")) ;
+  var numSpecial = parseInt(prompt("How many special characters are required? ( min: 1 )")) ;
+  var numLower = myLength - (numUpper + numNumber + numSpecial);
+
+  console.log("Length: " + myLength);
+  console.log("Lowers : " + numLower);
+  console.log("Uppers: " + numUpper);
+  console.log("Numbers : " + numNumber);
+  console.log("Specials : " + numSpecial);
+
+  pwGen(myLength,numLower,numUpper,numNumber,numSpecial);
+
 }
 
 /*---------------------------------------------------------------/*/
 //GENERATE PASSWORD BASED ON USER INPUT
-function pwGen(myLength,numUpper,numNumber,numSpecial){
+function pwGen(myLength,numLower,numUpper,numNumber,numSpecial){
 
   //REAPEAT BACK TO THE USER WHAT YOU ARE GOING TO DO
   alert("I'll generate you a password that is " + myLength + " characters long \n The password will contain: \n" + numUpper + " UPPERCASE characters \n " + numNumber + " numeric characters \n " + numSpecial + " special characters" ) ; 
@@ -50,21 +60,20 @@ function pwGen(myLength,numUpper,numNumber,numSpecial){
   charGrabber(numUpper,upperBucket);
   charGrabber(numNumber,numberBucket);
   charGrabber(numSpecial,specialBucket);
-  
-  //DETERMINE HOW MANY MORE CHARACTERS ARE NEEDED
-  var numLower = myLength - (numUpper + numNumber + numSpecia);
   charGrabber(numLower,lowerBucket);
 }
 
 /*---------------------------------------------------------------/*/
 //GATHER CHARACTERS FROM THE CHARACTER BUCKETS TO FORM THE PASSWORD
-function charGrabber(howMany,bucketName){
-  var picks = '';
-  alert(picks);
+function charGrabber(howMany,charBucket){
+  alert('Picking ' + howMany + " at random from the follwoing " + charBucket);
+
   for (var i = 0; i < howMany; i++) {
-    picks = bucketName[Math.floor(Math.random() * bucketName.lenth)] + picks ;
-    alert(picks);
+    var randomPick = charBucket[Math.floor(Math.random()*charBucket.length)]
+    console.log(randomPick);
+
   };
+  
   //GRAB A RANDOM NUMBER FROM THE BUCKET
   //myKey = theUpper[Math.floor(Math.random() * theUpper.length)]
 
