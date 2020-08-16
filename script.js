@@ -26,17 +26,34 @@ var upperBucket =  "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numberBucket = "0123456789";
 var specialBucket =  "!#$%&*-:;<=>?@[^_`{|}~";
 
-
-
 /*---------------------------------------------------------------/*/
 //USER PROMPTS FOR THE PASSWORD PROCEES
 function generatePassword() {
   //alert("The button click works");
+  
   //INITIAL USER PROMPTS - REFINE LATER. 
-  var myLength = parseInt(prompt("Please enter a password length \n Note : Length must be between 8-128"));
-  var numUpper = parseInt(prompt("How many uppercase characters are required? ( min: 1 )")) ;
-  var numNumber = parseInt(prompt("How many numeric characters are required? ( min: 1 )")) ;
-  var numSpecial = parseInt(prompt("How many special characters are required? ( min: 1 )")) ;
+  var myLength = '';
+  while (myLength < 8 || myLength > 128) {
+    myLength = parseInt(prompt("Please enter a password length \n Note : Length must be between 8-128"));
+  };
+
+  var numUpper = '';
+  while (numUpper < 1) {
+    numUpper = parseInt(prompt("How many uppercase characters are required? ( min: 1 )"));
+  };
+
+  var numNumber = '';
+  while (numNumber < 1) {
+    numNumber = parseInt(prompt("How many numeric characters are required? ( min: 1 )"));
+  };
+
+  var numSpecial = '';
+  while (numSpecial < 1) {
+    numSpecial = parseInt(prompt("How many special characters are required? ( min: 1 )"));
+  }
+
+
+  // Fill in the remainder with lowercase characters. 
   var numLower = myLength - (numUpper + numNumber + numSpecial);
 
   console.log("Length: " + myLength);
@@ -74,9 +91,7 @@ function pwBuilder(myLength,numLower,numUpper,numNumber,numSpecial){
 
 /*---------------------------------------------------------------/*/
 //Shuffle function to re-arrange my results.
-// UTILIZED TUTORIAL AT  https://www.codespeedy.com/shuffle-characters-of-a-string-in-javascript/ to construct the shuffle function used. 
-
-
+// UTILIZED TUTORIAL FROM  https://www.codespeedy.com/shuffle-characters-of-a-string-in-javascript/ to construct the shuffle function . 
 function shuffle(x) {
   //USE A SPLIT FUNCTION TO CONVERT TO AN ARRAY
   var arr = x.split('');
@@ -87,8 +102,6 @@ function shuffle(x) {
   x = arr.join('');                
   return x;                       
 }
-
-
 /*---------------------------------------------------------------/*/
 //GATHER CHARACTERS FROM THE CHARACTER BUCKETS TO FORM THE PASSWORD
 function charGrabber(howMany,charBucket){
