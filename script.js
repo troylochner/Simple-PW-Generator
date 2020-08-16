@@ -33,23 +33,23 @@ function generatePassword() {
   
   //INITIAL USER PROMPTS - REFINE LATER. 
   var myLength = '';
-  while (myLength < 8 || myLength > 128) {
-    myLength = parseInt(prompt("Please enter a password length \n Note : Length must be between 8-128"));
+  while (myLength < 8 || myLength > 128  || myLength !== parseInt(myLength)  ) {
+    myLength = parseInt(prompt("Please enter a password length \n Note : Length must be between 8-128",16));
   };
 
   var numUpper = '';
-  while (numUpper < 1) {
-    numUpper = parseInt(prompt("How many uppercase characters are required? ( min: 1 )"));
+  while (numUpper < 1 || numUpper !== parseInt(numUpper) ) {
+    numUpper = parseInt(prompt("How many uppercase characters are required? ( min: 1 ),",1));
   };
 
   var numNumber = '';
-  while (numNumber < 1) {
-    numNumber = parseInt(prompt("How many numeric characters are required? ( min: 1 )"));
+  while (numNumber < 1 || numNumber !== parseInt(numNumber) ) {
+    numNumber = parseInt(prompt("How many numeric characters are required? ( min: 1 )",1));
   };
 
   var numSpecial = '';
-  while (numSpecial < 1) {
-    numSpecial = parseInt(prompt("How many special characters are required? ( min: 1 )"));
+  while (numSpecial < 1 || numSpecial !== parseInt(numSpecial)) {
+    numSpecial = parseInt(prompt("How many special characters are required? ( min: 1 )",1));
   }
 
 
