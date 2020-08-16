@@ -24,7 +24,8 @@ PROMPT USER FOR SPECIAL SELECTORS
 var lowerBucket = "abcdefghijklmnopqrstuvwxyz";
 var upperBucket =  "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numberBucket = "0123456789";
-var specialBucket =  "!#$%&*-:;<=>?@[^_`{|}~";
+//PROVIDING A MORE LIMITED SET OF SPECIAL CHARS
+var specialBucket =  "!#$%&*-:;<=>?@[^_{|}~";
 
 /*---------------------------------------------------------------/*/
 //USER PROMPTS FOR THE PASSWORD PROCEES
@@ -123,6 +124,10 @@ return picks ;
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+var generateBtnAuto = document.querySelector("#generate-auto");
+//ADDING AN OPTION TO RUN IN AN AUTOMATIC ONE-CLICK MODE
+
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -132,5 +137,14 @@ function writePassword() {
 
 }
 
+function writePasswordAuto() {
+  //IF CALLED - WE WILL SKIP THE PROMPT STEPS AND MAKE A 16 CHAR PW
+   var myChars = pwBuilder(16,6,4,3,3);
+   var password = shuffle(myChars);
+   var passwordText = document.querySelector("#password");
+   passwordText.value = password;
+}
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+generateBtnAuto.addEventListener("click", writePasswordAuto);
