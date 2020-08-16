@@ -36,7 +36,12 @@ function generatePassword() {
   var myLength = prompt("Please enter a password length \n Note : Length must be between 8-128");
   var numUpper = prompt("How many uppercase characters are required? ( min: 1 )") ;
   var numNumber = prompt("How many numeric characters are required? ( min: 1 )") ;
-  var numSpecial = prompt("How many special characters are required? ( min: 1 ) ") ;
+  var numSpecial = prompt("How many special characters are required? ( min: 1 )") ;
+
+
+  //CLEAN THE PROMPT IN A BIT
+  alert("I'll generate you a password that is " + myLength + " characters long \n The password will contain: \n" + numUpper + " UPPERCASE characters \n " + numNumber + " numeric characters \n " + numSpecial + " special characters" )
+  
 
 }
 
