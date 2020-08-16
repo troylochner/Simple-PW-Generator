@@ -45,48 +45,70 @@ function generatePassword() {
   console.log("Numbers : " + numNumber);
   console.log("Specials : " + numSpecial);
 
-  pwGen(myLength,numLower,numUpper,numNumber,numSpecial);
+  var myChars = pwBuilder(myLength,numLower,numUpper,numNumber,numSpecial);
 
-  return "butt";
+  var myPassword = shuffle(myChars);
+
+  // passwordText.value = password;
+  return myPassword;
 
 }
 
 /*---------------------------------------------------------------/*/
 //GENERATE PASSWORD BASED ON USER INPUT
-function pwGen(myLength,numLower,numUpper,numNumber,numSpecial){
+function pwBuilder(myLength,numLower,numUpper,numNumber,numSpecial){
 
   //REAPEAT BACK TO THE USER WHAT YOU ARE GOING TO DO
-  alert("I'll generate you a password that is " + myLength + " characters long \n The password will contain: \n" + numUpper + " UPPERCASE characters \n " + numNumber + " numeric characters \n " + numSpecial + " special characters" ) ; 
+  /*alert("I'll generate you a password that is " + myLength + " characters long \n The password will contain: \n" + numUpper + " UPPERCASE characters \n " + numNumber + " numeric characters \n " + numSpecial + " special characters" ) ; */
 
+  var myBucket ; 
   //NEED TO PASS BACK RESULTS EACH TIME - CONCAT - THEN RANDOMIZE 
-  charGrabber(numUpper,upperBucket);
-  charGrabber(numNumber,numberBucket);
-  charGrabber(numSpecial,specialBucket);
-  charGrabber(numLower,lowerBucket);
+  myBucket = charGrabber(numUpper,upperBucket);
+  myBucket = myBucket + charGrabber(numNumber,numberBucket);
+  myBucket = myBucket + charGrabber(numSpecial,specialBucket);
+  myBucket = myBucket + charGrabber(numLower,lowerBucket);
+
+  return myBucket;
+
 }
+
+/*---------------------------------------------------------------/*/
+//Shuffle function to re-arrange my results.
+// UTILIZED TUTORIAL AT  https://www.codespeedy.com/shuffle-characters-of-a-string-in-javascript/ to construct the shuffle function used. 
+
+
+function shuffle(x) {
+  //USE A SPLIT FUNCTION TO CONVERT TO AN ARRAY
+  var arr = x.split('');
+  
+  arr.sort(function() {
+    return 0.5 - Math.random();
+  });  
+  x = arr.join('');                
+  return x;                       
+}
+
 
 /*---------------------------------------------------------------/*/
 //GATHER CHARACTERS FROM THE CHARACTER BUCKETS TO FORM THE PASSWORD
 function charGrabber(howMany,charBucket){
-  alert('Picking ' + howMany + " at random from the follwoing " + charBucket);
+  /*alert('Picking ' + howMany + " at random from the follwoing " + charBucket);*/
+
+  var picks = '' ; 
 
   for (var i = 0; i < howMany; i++) {
-    var randomPick = charBucket[Math.floor(Math.random()*charBucket.length)]
-    console.log(randomPick);
-
-  };
-  
-  //GRAB A RANDOM NUMBER FROM THE BUCKET
-  //myKey = theUpper[Math.floor(Math.random() * theUpper.length)]
-
-  // FOR THE AMOUNT OF VALUES NEEDED ; GO TO THE BUCKET AND PICK VALUES AT RANDOM
-
+    picks = picks + ( charBucket[Math.floor(Math.random()*charBucket.length)] ) ;
+    console.log(picks);
 }
+return picks ; 
+}
+
+
+
 
 /*---------------------------------------------------------------/*/
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
 
 // Write password to the #password input
 function writePassword() {
