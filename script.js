@@ -47,6 +47,8 @@ function generatePassword() {
 
   pwGen(myLength,numLower,numUpper,numNumber,numSpecial);
 
+  return "butt";
+
 }
 
 /*---------------------------------------------------------------/*/
