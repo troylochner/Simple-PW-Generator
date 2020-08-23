@@ -131,7 +131,6 @@ var generateBtn = document.querySelector("#generate");
 var generateBtnAuto = document.querySelector("#generate-auto");
 //ADDING AN OPTION TO RUN IN AN AUTOMATIC ONE-CLICK MODE
 
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -149,6 +148,17 @@ function writePasswordAuto() {
   passwordText.value = password;
 }
 
+//ADDED code to allow user to copy result of the password generation to the clipboard. 
+function copyPW() {
+  var copyText = document.getElementById("password");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999)
+  document.execCommand("copy");
+  alert("Password copied to clipboard.")
+
+}
+
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 generateBtnAuto.addEventListener("click", writePasswordAuto);
+
