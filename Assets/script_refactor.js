@@ -11,8 +11,8 @@ var numberBucket = "0123456789";
 var specialBucket = "!#$%&()*+,-./:;<=>?@[]^_{|}~";
 
 
-//validator : 3 conditions | must not be empty | must be greater than our min ; less than our max
-function validator(input, minTrue, maxTrue) {
+//validator : 3 conditions | must not be empty | must be greater than our min ; less than our max - NOT USED RIGHT NOW ; but keep for improvements down the road. 
+/*function validator(input, minTrue, maxTrue) {
   if (input === null) {
     return false;
   } else if (Number.isInteger(input) !== true) {
@@ -24,26 +24,10 @@ function validator(input, minTrue, maxTrue) {
   } else {
     return true;
   }
-}
+}*/
 
 ///USER PROMPTS FOR THE PASSWORD PROCESS
 function generatePassword() {
-
-/*
-var ask = true; 
-
-while(ask){
-	var pwLength = prompt("Please enter a password length \n Note : Length must be between 8-128 characters.", 16);
-  if (pwLength === null) {//user exit
-		ask = false;
-		break;
-	}
-	else if (employName !== '' && isNaN(Number(employName))) {
-		document.write("You are enquiring about: " + employName + "<br />");
-		break;
-	}
-}
-*/
 
  //CODE BEFORE REFACTORING
   var myLength ;
@@ -63,7 +47,6 @@ while(ask){
     numSpecial = parseInt(prompt("How many special characters are required? ( min: 1 ) \n Accepted characters : !#$%&*-:;<=>?@[^_{|}~", 1));
   }
   
-
   // Fill in the remainder with lowercase characters. Password generation remains the same after refactoring
   var numLower = myLength - (numUpper + numNumber + numSpecial);
   var password = pwGen(myLength, numLower, numUpper, numNumber, numSpecial);
