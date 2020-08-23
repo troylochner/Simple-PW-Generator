@@ -23,8 +23,8 @@ PROMPT USER FOR SPECIAL SELECTORS
 var lowerBucket = "abcdefghijklmnopqrstuvwxyz";
 var upperBucket = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numberBucket = "0123456789";
-//PROVIDING A MORE LIMITED SET OF SPECIAL CHARS
-var specialBucket = "!#$%&*-:;<=>?@[^_{|}~";
+//PROVIDING A MORE LIMITED SET OF SPECIAL CHARS - I did pull some characters out here. - removed double + single quotes + forward slash as it was trying to create an escape character. 
+var specialBucket = "!#$%&()*+,-./:;<=>?@[]^_{|}~";
 
 /*---------------------------------------------------------------/*/
 //USER PROMPTS FOR THE PASSWORD PROCEES
@@ -32,29 +32,29 @@ function generatePassword() {
   //alert("The button click works");
 
   //INITIAL USER PROMPTS - REFINE LATER.
-  var myLength = '';
+  var myLength ;
+
   while (myLength < 8 || myLength > 128 || myLength !== parseInt(myLength)) {
-    myLength = parseInt(prompt("Please enter a password length \n Note : Length must be between 8-128", 16));
-  };
+        myLength = parseInt(prompt("Please enter a password length \n Note : Length must be between 8-128 characters.", 16));
+    };
 
   //consider implementing numRemain - this will prevent us from creating too many special params. 
   //var numRemain = myLength;
-
-  var numUpper = '';
+  var numUpper ; 
   while (numUpper < 1 || numUpper !== parseInt(numUpper)) {
     numUpper = parseInt(prompt("How many uppercase characters are required? ( min: 1 ),", 1));
   };
 
-  numRemain = (myLength - numUpper);
+  //numRemain = (myLength - numUpper);
 
-  var numNumber = '';
+  var numNumber ;
   while (numNumber < 1 || numNumber !== parseInt(numNumber)) {
     numNumber = parseInt(prompt("How many numeric characters are required? ( min: 1 )", 1));
   };
 
-  numRemain = (numRemain - numNumber);
 
-  var numSpecial = '';
+
+  var numSpecial;
   while (numSpecial < 1 || numSpecial !== parseInt(numSpecial)) {
     numSpecial = parseInt(prompt("How many special characters are required? ( min: 1 ) \n Accepted characters : !#$%&*-:;<=>?@[^_{|}~", 1));
   }
@@ -127,8 +127,8 @@ function charGrabber(howMany, charBucket) {
 /*---------------------------------------------------------------/*/
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
 var generateBtnAuto = document.querySelector("#generate-auto");
+
 //ADDING AN OPTION TO RUN IN AN AUTOMATIC ONE-CLICK MODE
 
 // Write password to the #password input
