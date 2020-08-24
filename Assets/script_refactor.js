@@ -30,25 +30,36 @@ var specialBucket = "!#$%&()*+,-./:;<=>?@[]^_{|}~";
 function generatePassword() {
 
  //CODE BEFORE REFACTORING
+  //var remainingCharacters ; 
   var myLength ;
   while (myLength < 8 || myLength > 128 || myLength !== parseInt(myLength)) {
     myLength = parseInt(prompt("Please enter a password length \n Note : Length must be between 8-128 characters.", 16));
     };
+
+  //remainingCharacters=(myLength-4); //RESERVE 4 CHARACTERS
+  var numLower ;
+  while (numLower < 1 || numLower !== parseInt(numLower) ) {
+    numLower = parseInt(prompt("How many lowercase characters would you like? ( min: 1 ),", 1));
+  };
   var numUpper ; 
   while (numUpper < 1 || numUpper !== parseInt(numUpper)) {
-    numUpper = parseInt(prompt("How many uppercase characters are required? ( min: 1 ),", 1));
+    numUpper = parseInt(prompt("How many uppercase characters would you like? ( min: 1 ),", 1));
   };
   var numNumber ;
   while (numNumber < 1 || numNumber !== parseInt(numNumber)) {
-    numNumber = parseInt(prompt("How many numeric characters are required? ( min: 1 )", 1));
+    numNumber = parseInt(prompt("How many numeric characters would you like? ( min: 1 )", 1));
   };
   var numSpecial;
   while (numSpecial < 1 || numSpecial !== parseInt(numSpecial)) {
-    numSpecial = parseInt(prompt("How many special characters are required? ( min: 1 ) \n Accepted characters : !#$%&*-:;<=>?@[^_{|}~", 1));
-  }
+    numSpecial = parseInt(prompt("How many special characters would you like? ( min: 1 ) \n Accepted characters : !#$%&*-:;<=>?@[^_{|}~", 1));
+  };
+
+  var remainToFill = myLength - (numLower + numUpper + numNumber + numSpecial) ;
+  if (remainToFill > 0){
+    numlower = remainToFill + numLower;
+  };
   
-  // Fill in the remainder with lowercase characters. Password generation remains the same after refactoring
-  var numLower = myLength - (numUpper + numNumber + numSpecial);
+  //var numLower = myLength - (numUpper + numNumber + numSpecial); removing this - being more direct.
   var password = pwGen(myLength, numLower, numUpper, numNumber, numSpecial);
 
   return password;
